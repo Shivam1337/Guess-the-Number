@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="none">
+    <meta http-equiv="X-Content-Security-Policy" content="none">
+    <title>Guess The Number</title>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      body{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 id="alist">
+      <div id="number-box" style="border-style: solid; display: inline-block; margin:10px; padding:10px; border-color:blue;">X</div>
+    </h2>
+    <div id="btnArea">
+      <form id="prospects_form">
+        <input id="inp" type="number">
+      <button type="submit" id="startGame">Guess Number</button>
+      </form>
+    </div>
+    
+  </body>
+  <script>
+    $("#prospects_form").submit(function(e) {
+    e.preventDefault();
+});
+    var isFound = false;
+    var high = 100;
+    var low = 0;
+    $("#inp").attr({
+       "max" : high,      
+       "min" : low
+    });
+
+    var numberX = Math.floor(Math.random() * (high - low) + low);
+    console.log(numberX);
+    const allGuesses = [numberX];
+
+  document.querySelector('#startGame').addEventListener('click', () => {
+    var input = parseFloat($("#inp").val());
+   if(!isNaN(input) && typeof input === 'number'){
+
+     if(allGuesses.indexOf(input) == -1){
+     allGuesses.push(input);
+     allGuesses.sort(function(a, b){return a - b});
+     }else{
+      if(input == numberX){
+        isFound = true;
+        $("#btnArea").html('<button onClick="window.location.reload();">Restart Game</button>');
+      }
+     }
+   }
+   var arrayVis = "";
+   allGuesses.forEach((number)=>{
+     if(number == numberX){
+       if(isFound){
+        arrayVis += '<div id="number-box" style="border-style: solid; display: inline-block; margin:10px; padding:10px; border-color:green;">'+numberX+'</div>';
+       }else{
+        arrayVis += '<div id="number-box" style="border-style: solid; display: inline-block; margin:10px; padding:10px; border-color:blue;">'+"X"+'</div>';
+       }
+      
+     }else{
+      arrayVis += '<div id="number-box" style="border-style: solid; display: inline-block; margin:10px; padding:10px;border-color:red;">'+number+'</div>';
+     }
+   });
+   
+   $("#alist").html(arrayVis);
+   $("#inp").val('');
+
+});
+  </script>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "Guess-the-Number",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shivam1337/Guess-the-Number.git"
+  },
+  "keywords": [],
+  "author": "Shivam Shinde",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shivam1337/Guess-the-Number/issues"
+  },
+  "homepage": "https://github.com/Shivam1337/Guess-the-Number#readme",
+  "dependencies": {
+    "electron": "^16.0.4"
+  }
+}
